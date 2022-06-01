@@ -2,7 +2,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
 import { fileURLToPath } from "url";
-import { dirname } from "path";
+import path, { dirname } from "path";
 const __fileName = fileURLToPath(import.meta.url);
 const __dirname = dirname(__fileName);
 const app = express();
@@ -37,6 +37,11 @@ app.delete("/api/delete/:id", (req, res) => {
   notes = [...newArray];
   res.json(notes);
 });
-
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("build"));
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "build", "index.html"));
+  });
+}
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server started at ${PORT}`));
