@@ -11,31 +11,31 @@ app.use(bodyParser.json());
 
 let notes = [];
 
-app.get("/notes", (req, res) => {
-	res.json(notes);
+app.get("/api/notes", (req, res) => {
+  res.json(notes);
 });
-app.post("/add", (req, res) => {
-	const note = req.body;
-	console.log(note);
-	notes = [...notes, note];
+app.post("/api/add", (req, res) => {
+  const note = req.body;
+  console.log(note);
+  notes = [...notes, note];
 });
-app.patch("/edit/:id", (req, res) => {
-	let newNote = req.body;
-	let id = +req.params.id;
-	notes[id].title = newNote.title;
-	notes[id].content = newNote.content;
-	notes[id].color = newNote.color;
-	res.json(newNote);
+app.patch("/api/edit/:id", (req, res) => {
+  let newNote = req.body;
+  let id = +req.params.id;
+  notes[id].title = newNote.title;
+  notes[id].content = newNote.content;
+  notes[id].color = newNote.color;
+  res.json(newNote);
 });
-app.delete("/delete/:id", (req, res) => {
-	let id = +req.params.id;
-	let newArray = [];
-	newArray = notes.filter((note, index) => index !== id);
-	newArray.map((note, index) => {
-		note.id = index;
-	});
-	notes = [...newArray];
-	res.json(notes);
+app.delete("/api/delete/:id", (req, res) => {
+  let id = +req.params.id;
+  let newArray = [];
+  newArray = notes.filter((note, index) => index !== id);
+  newArray.map((note, index) => {
+    note.id = index;
+  });
+  notes = [...newArray];
+  res.json(notes);
 });
 
 const PORT = process.env.PORT || 5000;

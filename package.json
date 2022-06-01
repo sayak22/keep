@@ -24,10 +24,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "server": "nodemon server.js",
-    "sass": "node-sass public/sass/main.scss src/style.css -w",
-    "predeploy": "npm run build",
-"deploy": "gh-pages -d build"
+    "server": "nodemon server.js"
   },
   "eslintConfig": {
     "extends": [
@@ -46,9 +43,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "gh-pages": "^4.0.0",
-    "node-sass": "^6.0.1"
   }
 }
