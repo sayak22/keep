@@ -63,7 +63,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 # Author
 
-[Akshat Mittal](https://akshatmittal61.github.io/portfolio)
+Sayak Mondal
 
 ## References and Libraries Used
 
