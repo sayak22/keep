@@ -20,6 +20,7 @@ app.post("/api/add", (req, res) => {
   const note = req.body;
   console.log(note);
   notes = [...notes, note];
+  res.json(notes);
 });
 app.patch("/api/edit/:id", (req, res) => {
   let newNote = req.body;
