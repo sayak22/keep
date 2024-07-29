@@ -13,6 +13,7 @@ import Contact from "./pages/Contact";
 import About from "./pages/About";
 import Edit from "./pages/Edit";
 
+
 const App = () => {
   const params = useParams();
   useEffect(() => {
