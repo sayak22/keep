@@ -6,8 +6,8 @@ const Contact = () => {
     name: "Sayak Mondal",
     github: ["https://github.com/sayak22", "sayak22"],
     linkedin: [
-      "https://www.linkedin.com/in/sayak-mondal-b70384200/",
-      "sayak-mondal-b70384200",
+      "https://www.linkedin.com/in/sayak22/",
+      "sayak22",
     ],
     twitter: ["https://twitter.com/ig_d3monic", "ig_d3monic"],
     ig: ["https://www.instagram.com/ig_d3monic/", "ig_d3monic"],
