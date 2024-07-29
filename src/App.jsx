@@ -12,6 +12,7 @@ import Add from "./pages/Add";
 import Contact from "./pages/Contact";
 import About from "./pages/About";
 import Edit from "./pages/Edit";
+import { http } from "./utils/http";
 
 
 const App = () => {
@@ -20,11 +21,8 @@ const App = () => {
     getNotes();
   }, []);
   const [allNotes, setAllNotes] = useState([]);
-  const axiosInstance = axios.create({
-    baseURL: process.env.REACT_APP_BASEURL+"/api",
-  });
   async function getNotes() {
-    await axiosInstance
+    await http
       .get("/notes")
       .then((res) => {
         setAllNotes([...res.data]);
@@ -36,16 +34,15 @@ const App = () => {
       <Header />
       <main>
         <Routes>
-          <Route path="/" element={<Home axiosInstance={axiosInstance} />} />
+          <Route path="/" element={<Home/>} />
           <Route path="/about" element={<About />} />
-          <Route path="/add" element={<Add axiosInstance={axiosInstance} />} />
+          <Route path="/add" element={<Add/>} />
           <Route
             path="/edit/:id"
             element={
               <Edit
                 id={params.id}
                 noteToEdit={allNotes[params.id]}
-                axiosInstance={axiosInstance}
               />
             }
           />

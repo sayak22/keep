@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Button from "../components/Button";
+import { http } from "../utils/http";
 
 const Edit = ({
-	noteToEdit = { title: "", content: "", color: "" },
-	axiosInstance,
+	noteToEdit = { title: "", content: "", color: "" }
 }) => {
 	useEffect(() => {
 		getNotes();
@@ -24,7 +24,7 @@ const Edit = ({
 		color: noteToEdit.color,
 	});
 	async function getNotes() {
-		await axiosInstance
+		await http
 			.get("/notes")
 			.then((res) => {
 				setAllNotes([...res.data]);
@@ -42,7 +42,7 @@ const Edit = ({
 			[name]: value,
 		});
 	};
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		let newNote = {
 			id: id,
 			...note,
@@ -50,7 +50,7 @@ const Edit = ({
 		e.preventDefault();
 		const condition = newNote.title === "" && newNote.content === "";
 		if (!condition) {
-			axiosInstance
+			await http
 				.patch(`/edit/${id}`, newNote)
 				.then((res) => console.log(res.data))
 				.catch((err) => console.log(err));

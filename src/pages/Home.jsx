@@ -4,8 +4,9 @@ import NotePopup from "../components/NotePopup";
 import Fab from "../components/Fab";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 import { Link, useNavigate } from "react-router-dom";
+import { http } from "../utils/http";
 
-const Home = ({ axiosInstance }) => {
+const Home = () => {
   useEffect(() => {
     getNotes();
   }, []);
@@ -17,7 +18,7 @@ const Home = ({ axiosInstance }) => {
     setAllNotes([]);
     setisLoading(true);
     try {
-      const resp = await axiosInstance.get("/notes");
+      const resp = await http.get("/notes");
       const newNotes = resp.data;
       console.log(newNotes);
       setAllNotes(newNotes);
@@ -29,12 +30,12 @@ const Home = ({ axiosInstance }) => {
   const popupNote = (a) => {
     setPopupNoteBox(a);
   };
-  const deleteNote = (id) => {
-    axiosInstance
+  const deleteNote = async (id) => {
+    await http
       .delete(`/delete/${id}`)
       .then((res) => console.log(res.data))
       .catch((err) => console.log(err));
-    getNotes();
+    await getNotes();
     setPopupNoteBox(-1);
   };
   const editNote = (id) => {
