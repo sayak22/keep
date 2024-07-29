@@ -20,7 +20,7 @@ const App = () => {
   }, []);
   const [allNotes, setAllNotes] = useState([]);
   const axiosInstance = axios.create({
-    baseURL: process.env.REACT_APP_BASEURL,
+    baseURL: process.env.REACT_APP_BASEURL+"/api",
   });
   async function getNotes() {
     await axiosInstance
