@@ -10,7 +10,9 @@ app.use(cors());
 app.use(bodyParser.json());
 
 let notes = [];
-
+// app.get("/", (req, res) => {
+//   res.send("server is up and running");
+// });
 app.get("/api/notes", (req, res) => {
   res.json(notes);
 });
@@ -31,8 +33,9 @@ app.delete("/api/delete/:id", (req, res) => {
   let id = +req.params.id;
   let newArray = [];
   newArray = notes.filter((note, index) => index !== id);
-  newArray.map((note, index) => {
+  newArray.forEach((note, index) => {
     note.id = index;
+    return note.id;
   });
   notes = [...newArray];
   res.json(notes);
